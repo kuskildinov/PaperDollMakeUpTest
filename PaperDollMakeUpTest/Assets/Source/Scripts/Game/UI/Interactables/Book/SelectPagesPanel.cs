@@ -4,17 +4,13 @@ public class SelectPagesPanel : MonoBehaviour
 {
     [SerializeField] private SelectPageButton[] _pagesButton;
 
+    private Book _book;
     private SelectPageButton _currentSelectedButton;
 
-    public void Initialize()
+    public void Initialize(Book book)
     {
-        InitializeSelectPageButtons();
+        _book = book;
 
-        OpenPageByType(MakeupType.Blush);
-    }
-
-    private void Start()
-    {
         InitializeSelectPageButtons();
 
         OpenPageByType(MakeupType.Blush);
@@ -44,6 +40,7 @@ public class SelectPagesPanel : MonoBehaviour
     private void OpenPageByType(MakeupType type)
     {
         SetSelectionToPageButtonByType(type);
+        _book.OpenPageByType(type);
     }
 
     private void SetSelectionToPageButtonByType(MakeupType type)
