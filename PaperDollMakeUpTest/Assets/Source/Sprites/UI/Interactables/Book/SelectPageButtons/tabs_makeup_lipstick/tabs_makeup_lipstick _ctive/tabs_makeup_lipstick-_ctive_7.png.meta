@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 89205eaaaa5af5b4a85c80c7727b82c7
+guid: 715b5267cd6179743839a8bf95df7913
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5019120186524738833
-    second: blush_color_05_0
+      213: 2026225629865002003
+    second: tabs_makeup_lipstick-_ctive_7_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blush_color_05_0
+      name: tabs_makeup_lipstick-_ctive_7_0
       rect:
         serializedVersion: 2
-        x: 838
-        y: 3255
-        width: 323
-        height: 203
+        x: 0
+        y: 0
+        width: 109
+        height: 143
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fea533568c0885ab0800000000000000
-      internalID: -5019120186524738833
+      spriteID: 31445e699799e1c10800000000000000
+      internalID: 2026225629865002003
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      blush_color_05_0: -5019120186524738833
+      tabs_makeup_lipstick-_ctive_7_0: 2026225629865002003
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

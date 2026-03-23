@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 89205eaaaa5af5b4a85c80c7727b82c7
+guid: 5d512bb8bc83b3345b8d911844719e30
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5019120186524738833
-    second: blush_color_05_0
+      213: -2460248190930681085
+    second: tabs_makeup_eyeshadow_active_6_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blush_color_05_0
+      name: tabs_makeup_eyeshadow_active_6_0
       rect:
         serializedVersion: 2
-        x: 838
-        y: 3255
-        width: 323
-        height: 203
+        x: 0
+        y: 0
+        width: 110
+        height: 143
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fea533568c0885ab0800000000000000
-      internalID: -5019120186524738833
+      spriteID: 30387482e417bddd0800000000000000
+      internalID: -2460248190930681085
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      blush_color_05_0: -5019120186524738833
+      tabs_makeup_eyeshadow_active_6_0: -2460248190930681085
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
