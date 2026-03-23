@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1146921193358571695}
   - component: {fileID: 3675440344168276132}
+  - component: {fileID: 894896120328751372}
   - component: {fileID: 5877171284142057210}
   - component: {fileID: 8518408179115724952}
   m_Layer: 5
@@ -46,6 +47,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5978893707272873037}
   m_CullTransparentMesh: 1
+--- !u!114 &894896120328751372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5978893707272873037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a606d600cd168444bc10abc74208664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelectPageButton
+  _pageType: 0
+  _selectedSprite: {fileID: 0}
+  _notSelectedSprite: {fileID: 0}
+  _lockedIcon: {fileID: 0}
 --- !u!114 &5877171284142057210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +112,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}

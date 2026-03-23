@@ -467,6 +467,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 594443477}
     m_Modifications:
+    - target: {fileID: 894896120328751372, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
+      propertyPath: _pageType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 894896120328751372, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
+      propertyPath: _selectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5d512bb8bc83b3345b8d911844719e30, type: 3}
+    - target: {fileID: 894896120328751372, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
+      propertyPath: _notSelectedSprite
+      value: 
+      objectReference: {fileID: 5084321686398463905, guid: ec3930621f2ad074392dd7f4bdef4556, type: 3}
     - target: {fileID: 1146921193358571695, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -569,6 +581,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1146921193358571695, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
   m_PrefabInstance: {fileID: 502593070}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &502593072 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 894896120328751372, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
+  m_PrefabInstance: {fileID: 502593070}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a606d600cd168444bc10abc74208664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelectPageButton
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,6 +926,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 594443477}
+  - component: {fileID: 594443479}
   - component: {fileID: 594443478}
   m_Layer: 5
   m_Name: SelectPagesPanel
@@ -960,6 +984,23 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &594443479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594443476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfd897ae1426e6040b9ee954a517e910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelectPagesPanel
+  _pagesButton:
+  - {fileID: 5953146571251708086}
+  - {fileID: 502593072}
+  - {fileID: 753647975}
+  - {fileID: 1773770905}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,6 +1129,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 594443477}
     m_Modifications:
+    - target: {fileID: 894896120328751372, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
+      propertyPath: _pageType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 894896120328751372, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
+      propertyPath: _selectedSprite
+      value: 
+      objectReference: {fileID: 2026225629865002003, guid: 715b5267cd6179743839a8bf95df7913, type: 3}
+    - target: {fileID: 894896120328751372, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
+      propertyPath: _notSelectedSprite
+      value: 
+      objectReference: {fileID: 5566531877271220411, guid: bdc27796f50eec04287d8117c564e0e7, type: 3}
     - target: {fileID: 1146921193358571695, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1186,6 +1239,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1146921193358571695, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
   m_PrefabInstance: {fileID: 753647973}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &753647975 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 894896120328751372, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
+  m_PrefabInstance: {fileID: 753647973}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a606d600cd168444bc10abc74208664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelectPageButton
 --- !u!1 &831797003
 GameObject:
   m_ObjectHideFlags: 0
@@ -1521,6 +1585,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1230234732}
+  - component: {fileID: 1230234733}
   m_Layer: 5
   m_Name: Book
   m_TagString: Untagged
@@ -1548,6 +1613,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1230234733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230234731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa01405e0d00fa439319e54bdc865df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Book
 --- !u!1 &1322350995
 GameObject:
   m_ObjectHideFlags: 0
@@ -2115,6 +2192,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 594443477}
     m_Modifications:
+    - target: {fileID: 894896120328751372, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
+      propertyPath: _pageType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 894896120328751372, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
+      propertyPath: _selectedSprite
+      value: 
+      objectReference: {fileID: 477915903493402997, guid: 433cb613ba38e724aac952225761da78, type: 3}
+    - target: {fileID: 894896120328751372, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
+      propertyPath: _notSelectedSprite
+      value: 
+      objectReference: {fileID: -2882974768894518874, guid: 0c1201cf355fa7245829a558a4a1c499, type: 3}
     - target: {fileID: 1146921193358571695, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2195,13 +2284,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3675247145386903349, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5877171284142057210, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -2882974768894518874, guid: 0c1201cf355fa7245829a558a4a1c499, type: 3}
+    - target: {fileID: 5877171284142057210, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5978893707272873037, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
       propertyPath: m_Name
       value: SelectPageButton (Powder)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518408179115724952, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
+      propertyPath: m_Interactable
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2213,6 +2314,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1146921193358571695, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
   m_PrefabInstance: {fileID: 1773770900}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1773770905 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 894896120328751372, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
+  m_PrefabInstance: {fileID: 1773770900}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a606d600cd168444bc10abc74208664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelectPageButton
 --- !u!1 &1853960673
 GameObject:
   m_ObjectHideFlags: 0
@@ -2540,6 +2652,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 594443477}
     m_Modifications:
+    - target: {fileID: 894896120328751372, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
+      propertyPath: _selectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8d44ddbe6ea2df84d9afc99af07cb659, type: 3}
+    - target: {fileID: 894896120328751372, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
+      propertyPath: _notSelectedSprite
+      value: 
+      objectReference: {fileID: 4432923064242696705, guid: 971c4a109bc8fd5418d5cf0815bd80c7, type: 3}
     - target: {fileID: 1146921193358571695, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2571,18 +2691,6 @@ PrefabInstance:
     - target: {fileID: 1146921193358571695, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
       propertyPath: m_SizeDelta.y
       value: 123
-      objectReference: {fileID: 0}
-    - target: {fileID: 1146921193358571695, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1146921193358571695, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1146921193358571695, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1146921193358571695, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2645,6 +2753,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
+--- !u!114 &5953146571251708086 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 894896120328751372, guid: bca9e1d9f4916e44aac02dd9a519f1e5, type: 3}
+  m_PrefabInstance: {fileID: 5953146571251708085}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a606d600cd168444bc10abc74208664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelectPageButton
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
