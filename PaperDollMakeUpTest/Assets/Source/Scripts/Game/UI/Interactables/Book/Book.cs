@@ -7,12 +7,15 @@ public class Book : MonoBehaviour
 
     private SelectMakeupRoot _root;
     private BookPage _currentOpenPage;
+    private SelectMakeUpButton[] _selectMakeupButtons;
+    private DraggableItem[] _draggableItems;
 
     public void Initialize(SelectMakeupRoot root)
     {
         _root = root;
         _selectPagesPanel.Initialize(this);
         InitializeSelectMakeupButtons();
+        InitializeDraggableItems();
 
         CloseAllPages();
         OpenPage(_pages[0]);
@@ -54,27 +57,56 @@ public class Book : MonoBehaviour
     }
 
     #endregion
-
     #region >>> SELECT MAKEUP
 
-    public void OnSelectMakeupButtonClicked(MakeupData data)
+    public void OnSelectMakeupButtonClicked(SelectMakeUpButton button)
     {
-        _root.SetMakeUpData(data);
+        _root.SetMakeUpData(button);
     }
 
     private void InitializeSelectMakeupButtons()
     {
-        SelectMakeUpButton[] selectMakeupButtons = FindObjectsOfType<SelectMakeUpButton>(true);
+        _selectMakeupButtons = FindObjectsOfType<SelectMakeUpButton>(true);
 
-        if (selectMakeupButtons == null)
+        if (_selectMakeupButtons == null)
         {
             Debug.LogError("Cant find Select Makeup Buttons");
             return;
         }
 
-        foreach (SelectMakeUpButton button in selectMakeupButtons)
+        foreach (SelectMakeUpButton button in _selectMakeupButtons)
         {
             button.Initialize(this);
+        }
+    }
+
+    #endregion
+    #region >>> DRAGGABLE ITEMS
+
+    public DraggableItem GetDraggableItemByType(MakeupType type)
+    {
+        foreach (DraggableItem item in _draggableItems)
+        {
+            if (item.Type == type)
+                return item;
+        }
+
+        return null;
+    }
+
+    private void InitializeDraggableItems()
+    {
+        _draggableItems = FindObjectsOfType<DraggableItem>(true);
+
+        if (_selectMakeupButtons == null)
+        {
+            Debug.LogError("Cant find Draggable Items");
+            return;
+        }
+
+        foreach (DraggableItem item in _draggableItems)
+        {
+            item.Initialize();
         }
     }
 

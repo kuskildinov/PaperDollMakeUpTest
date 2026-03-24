@@ -8,6 +8,8 @@ public class SelectMakeUpButton : MonoBehaviour
 
     private Book _book;
     private Button _button;
+
+    public MakeupData Data => _data;
   
     public void Initialize(Book book)
     {
@@ -31,7 +33,7 @@ public class SelectMakeUpButton : MonoBehaviour
 
     private void OnButtonClicked()
     {
-        _book.OnSelectMakeupButtonClicked(_data);
+        _book.OnSelectMakeupButtonClicked(this);
     }
     #endregion
 
