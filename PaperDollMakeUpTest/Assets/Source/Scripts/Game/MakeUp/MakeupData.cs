@@ -1,12 +1,14 @@
+using System;
 using UnityEngine;
 
-public class MakeupData : MonoBehaviour
+[Serializable]
+public class MakeupData
 {
+    [SerializeField] private int _index;
     [SerializeField] private MakeupType _type;
-    [SerializeField] private Sprite _image;
 
+    public int Index => _index;
     public MakeupType Type => _type;
-    public Sprite Image => _image;
 }
 
 public enum MakeupType

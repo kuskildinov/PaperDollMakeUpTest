@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6ef6a62e14a9e347b395676cd5928cd, type: 3}
+  m_Name: EyeShadowVisualsData
+  m_EditorClassIdentifier: Assembly-CSharp::MakeupVisualData
+  _type: 1
+  _sprites:
+  - {fileID: 21300000, guid: 29f216032d941034ea0742393279857e, type: 3}
+  - {fileID: 21300000, guid: d8a7ca1437372c74cb0d87a3d5e2d291, type: 3}
+  - {fileID: 21300000, guid: 5cf255991e13968468285997fd85eb18, type: 3}
+  - {fileID: 21300000, guid: 90505751172263544a82e966b4713ad7, type: 3}
+  - {fileID: 21300000, guid: 04b43f640f7b3cc43b0dca15c4560891, type: 3}
+  - {fileID: 21300000, guid: bd22020ffa0c3864a995d68cb8d5e029, type: 3}
+  - {fileID: 21300000, guid: 8baba93cc0912894b9b2a77775a58a0c, type: 3}
+  - {fileID: 21300000, guid: ff6d4c4c3c78a664ebdde6047ff28b18, type: 3}
+  - {fileID: 21300000, guid: 75512e85ba1266543b65e9be3fda861d, type: 3}

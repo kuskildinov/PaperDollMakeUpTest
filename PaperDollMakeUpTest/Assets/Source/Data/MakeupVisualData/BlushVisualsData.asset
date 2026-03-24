@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6ef6a62e14a9e347b395676cd5928cd, type: 3}
+  m_Name: BlushVisualsData
+  m_EditorClassIdentifier: Assembly-CSharp::MakeupVisualData
+  _type: 0
+  _sprites:
+  - {fileID: 21300000, guid: 2fbcc370942643d4385d482d968fbcb7, type: 3}
+  - {fileID: 21300000, guid: 4489e361e9fef834896d564fcb9c602c, type: 3}
+  - {fileID: 21300000, guid: 95ac54ff2ad1eba4aa20275043afe21c, type: 3}
+  - {fileID: 21300000, guid: 6e1e08d6d023d7d49b448c98159b319b, type: 3}
+  - {fileID: 21300000, guid: 89205eaaaa5af5b4a85c80c7727b82c7, type: 3}
+  - {fileID: 21300000, guid: fcbb691f935b0c54483c1098ac66709b, type: 3}
+  - {fileID: 21300000, guid: 9ba71faa7622fa241ac6f1ada7e8aee6, type: 3}
+  - {fileID: 21300000, guid: cd310c57d77c7bb49b33fec7efc35219, type: 3}
+  - {fileID: 21300000, guid: 709ec8f2c56a7e0488c3241879cce887, type: 3}
