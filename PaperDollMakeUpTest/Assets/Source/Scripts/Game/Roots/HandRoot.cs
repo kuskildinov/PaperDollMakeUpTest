@@ -24,4 +24,9 @@ public class HandRoot : CompositeRoot
     {
         return _characterRoot.GetChestPosition();
     }
+
+    public Vector2 GetFacePosition()
+    {
+        return _characterRoot.GetFacePosition();
+    }
 }

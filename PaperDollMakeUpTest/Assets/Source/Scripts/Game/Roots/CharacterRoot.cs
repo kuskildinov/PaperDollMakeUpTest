@@ -18,4 +18,9 @@ public class CharacterRoot : CompositeRoot
     {
         return _character.ChestPosition;
     }
+
+    public Vector2 GetFacePosition()
+    {
+        return _character.FacePosition;
+    }
 }

@@ -12,8 +12,9 @@ public class Hand : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     [SerializeField] private float _chestY;
     [Header("Animations Settings")]
     [SerializeField] private float _handMoveSpeed = 0.5f;
-    [SerializeField] private float _handShakeSpeed = 0.2f;
-    [SerializeField] private float _widthOfStrokes = 20f;
+    [SerializeField] private float _handShakeSpeed = 0.3f;
+    [SerializeField] private float _widthOfShake = 20f;
+    [SerializeField] private float _widthOfStroke = 5f;
 
     private HandRoot _root;
     private RectTransform _rectTransform;
@@ -120,7 +121,7 @@ public class Hand : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
         if(type == MakeupType.Blush || type == MakeupType.EyeShadow)
         {            
-            PlayShakeAnimation(button.transform.position, _widthOfStrokes, () =>
+            PlayShakeAnimation(button.transform.position, _widthOfShake, () =>
             {
                 OnComplete?.Invoke();
             });
@@ -133,10 +134,21 @@ public class Hand : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     private void PlaySetMakeupAnimationByType(Action OnComplete)
     {
-        PlayShakeAnimation(_currentItem.transform.position, _widthOfStrokes, () =>
+        if (_currentItem.Type == MakeupType.Cream)
         {
-            OnComplete?.Invoke();
-        });
+            PlayTopDownAnimation(_currentItem.transform.position, _widthOfStroke, () =>
+            {
+                OnComplete?.Invoke();
+            });
+        }
+        else
+        {
+            PlayShakeAnimation(_currentItem.transform.position, _widthOfShake, () =>
+            {
+                OnComplete?.Invoke();
+            });
+        }
+        
     }
 
     private void PlayShakeAnimation(Vector2 startPos, float brushWidth, Action onComplete)
@@ -153,6 +165,19 @@ public class Hand : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
             onComplete?.Invoke();
         });                                                                                                  // При необходимости задаем цвет кисти
         brushSeq.Play();
+    }
+
+    private void PlayTopDownAnimation(Vector2 startPos, float width, Action onComplete)
+    {
+        Sequence Seq = DOTween.Sequence();
+        Seq.Append(_rectTransform.DOMoveY(startPos.y - width, _handShakeSpeed).SetEase(Ease.InOutSine))                                            // Движения вниз-вверх 3 раза
+               .Append(_rectTransform.DOMoveY(startPos.y + width, _handShakeSpeed).SetEase(Ease.InOutSine))
+               .Append(_rectTransform.DOMoveY(startPos.y, _handMoveSpeed).SetEase(Ease.OutBack));
+        Seq.OnComplete(() =>
+        {
+            onComplete?.Invoke();
+        });                                                                                                  // При необходимости задаем цвет кисти
+        Seq.Play();
     }
 
     #endregion
@@ -199,7 +224,8 @@ public class Hand : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         Vector2 preparePosition = new Vector2();
         if (item.Type == MakeupType.Cream)
         {
-
+            Vector2 facePos = _root.GetFacePosition();
+            preparePosition = (facePos + (Vector2)item.GetComponent<RectTransform>().position) / 2f;
         }
         else
         {

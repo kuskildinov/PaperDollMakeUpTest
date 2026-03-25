@@ -12,8 +12,10 @@ public class Character : MonoBehaviour
     [SerializeField] private MakeupVisualData _blushVisualData;
     [SerializeField] private MakeupVisualData _lipsVisualData;
     [Header("other")]
+    [SerializeField] private RectTransform _face;
     [SerializeField] private RectTransform _chest;
 
+    public Vector2 FacePosition => _face.position;
     public Vector2 ChestPosition => _chest.position;
 
     public void Initialize()
