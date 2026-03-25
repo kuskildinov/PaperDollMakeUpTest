@@ -7,10 +7,13 @@ using System;
 [RequireComponent(typeof(RectTransform))]
 public class Hand : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [Header("Hand Y Positions")]
-    [SerializeField] private float _selectColorY = 50f;
-    [SerializeField] private float hiddenY = -500;
+    [Header("Hand Y Positions")]   
+    [SerializeField] private float _hiddenY = -500;
     [SerializeField] private float _chestY;
+    [Header("Animations Settings")]
+    [SerializeField] private float _handMoveSpeed = 0.5f;
+    [SerializeField] private float _handShakeSpeed = 0.2f;
+    [SerializeField] private float _widthOfStrokes = 20f;
 
     private HandRoot _root;
     private RectTransform _rectTransform;
@@ -27,7 +30,8 @@ public class Hand : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         _canvas = canvas;
         _startPos = _rectTransform.position;
     }
-    
+
+    #region >>> TWEENS
     public void OnMakeUpSelected(SelectMakeUpButton button, DraggableItem item)
     {
         if (_currentState != HandState.Idle) return;
@@ -38,42 +42,26 @@ public class Hand : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         _startPos = transform.position;
 
         Sequence seq = DOTween.Sequence();
-
-        seq.Append(_rectTransform.DOMove(item.transform.position, 1f));                                                                   // Летим к предметы
-        seq.AppendCallback(() =>                                                                                                          // Хватает предмет
+        seq.Append(_rectTransform.DOMove(_currentItem.transform.position, _handMoveSpeed));                                                                         // Летим к предмету
+        seq.AppendCallback(() =>                                                                                                                                    // Хватаем предмет
         {
-            item.transform.SetParent(_rectTransform);
-            item.transform.SetSiblingIndex(1);
-            item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;          
+            _currentItem.TryTakeByHand(_rectTransform);  
         });
-        seq.Append(_rectTransform.DOMove(new Vector2(button.transform.position.x, button.transform.position.y - _selectColorY), 1f));     // Летим к месту подготовки набора цвета
-        seq.AppendCallback(() =>                                                                                                          // Анимация набора цвета
+        if(_currentItem.NeedGetColor)                                                                                                                             // Летим к месту подготовки набора цвета, если нужно
+            seq.Append(_rectTransform.DOMove(new Vector2(button.transform.position.x, button.transform.position.y - _currentItem.UseYOffset), _handMoveSpeed));      
+        seq.AppendCallback(() =>                                                                                                                                 // Анимация набора цвета
         {
             seq.Pause();
-            Vector3 buttonPos = button.transform.position;
-            float brushWidth = 10f; // ширина движения кисточки
-
-            // Создаём вложенную последовательность для протирания
-            Sequence brushSeq = DOTween.Sequence();
-
-            // Движения влево-вправо 3 раза
-            brushSeq.Append(_rectTransform.DOMoveX(buttonPos.x - brushWidth, 0.3f).SetEase(Ease.InOutSine))
-                    .Append(_rectTransform.DOMoveX(buttonPos.x + brushWidth, 0.3f).SetEase(Ease.InOutSine))
-                    .Append(_rectTransform.DOMoveX(buttonPos.x - brushWidth, 0.3f).SetEase(Ease.InOutSine))
-                    .Append(_rectTransform.DOMoveX(buttonPos.x + brushWidth, 0.3f).SetEase(Ease.InOutSine))
-                    .Append(_rectTransform.DOMoveX(buttonPos.x, 0.3f).SetEase(Ease.OutBack));
-
-            brushSeq.OnComplete(() =>
+            PlayPrepareAnimationByType(button, () =>
             {
                 Color color = button.Data.Color;
                 item.SetColor(color);
-                seq.Play();              
-            });
-            brushSeq.Play();
+                seq.Play();
+            });            
         });
 
-        Vector2 chestPosition = new Vector2(_chestY, _chestY);
-        seq.Append(_rectTransform.DOMove(chestPosition, 1f));
+        Vector2 preparePosition = GetPreparePosition(_currentItem);                                                         
+        seq.Append(_rectTransform.DOMove(preparePosition, _handMoveSpeed));                                                                                        // Летим к месту передачи управления игроку
         seq.OnComplete(() =>
         {
             _currentState = HandState.HoldingTool;
@@ -86,37 +74,89 @@ public class Hand : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
         Sequence seq = DOTween.Sequence();
 
-        seq.Append(_rectTransform.DOMove(new Vector2(face.transform.position.x, face.transform.position.y - _selectColorY), 1f));
-        seq.AppendCallback(() =>                                                                                                          // Анимация набора цвета
+        Vector2 setMakeupPosition = GetMakeupPosition(face, _currentItem);
+        seq.Append(_rectTransform.DOMove(setMakeupPosition, _handMoveSpeed));
+        seq.AppendCallback(() =>                                                                                                          // Анимация нанесения макияжа
         {
             seq.Pause();
-
-            float brushWidth = 10f;         
-            Sequence brushSeq = DOTween.Sequence();
-
-            // Движения влево-вправо 3 раза
-            brushSeq.Append(_rectTransform.DOMoveX(_rectTransform.position.x - brushWidth, 0.3f).SetEase(Ease.InOutSine))
-                    .Append(_rectTransform.DOMoveX(_rectTransform.position.x + brushWidth, 0.3f).SetEase(Ease.InOutSine))
-                    .Append(_rectTransform.DOMoveX(_rectTransform.position.x - brushWidth, 0.3f).SetEase(Ease.InOutSine))
-                    .Append(_rectTransform.DOMoveX(_rectTransform.position.x + brushWidth, 0.3f).SetEase(Ease.InOutSine))
-                    .Append(_rectTransform.DOMoveX(_rectTransform.position.x, 0.3f).SetEase(Ease.OutBack));
-
-            brushSeq.Play();
-            brushSeq.OnComplete(() =>
+           
+            PlaySetMakeupAnimationByType(() =>
             {
                 seq.Play();
             });
-           
         });
+
         Vector2 itemStartPosition = _currentItem.StartPosition;
-        seq.Append(_rectTransform.DOMove(itemStartPosition, 1f));
-        seq.OnComplete(() =>
+        seq.Append(_rectTransform.DOMove(itemStartPosition, _handMoveSpeed));                                                            // Летим у стартовому слоту 
+        seq.OnComplete(() =>                                                                                                             // Сбрасываем и скрываем руку
         {
             ReturnTool();
             onComplete?.Invoke();
         });
     }
 
+    private void ReturnTool()
+    {
+        Sequence seq = DOTween.Sequence();
+        seq.AppendCallback(() =>
+        {
+            _currentItem.Reset();
+        });
+
+        seq.Append(_rectTransform.DOMove(_startPos, 1f));
+
+        seq.OnComplete(() =>
+        {
+            _currentState = HandState.Idle;
+            _currentItem = null;
+        });
+    }
+    #endregion
+    #region >>> ANIMATIONS
+
+    private void PlayPrepareAnimationByType(SelectMakeUpButton button, Action OnComplete)
+    {
+        MakeupType type = button.Data.Type;
+
+        if(type == MakeupType.Blush || type == MakeupType.EyeShadow)
+        {            
+            PlayShakeAnimation(button.transform.position, _widthOfStrokes, () =>
+            {
+                OnComplete?.Invoke();
+            });
+        }
+        else
+        {
+            OnComplete?.Invoke();
+        }
+    }
+
+    private void PlaySetMakeupAnimationByType(Action OnComplete)
+    {
+        PlayShakeAnimation(_currentItem.transform.position, _widthOfStrokes, () =>
+        {
+            OnComplete?.Invoke();
+        });
+    }
+
+    private void PlayShakeAnimation(Vector2 startPos, float brushWidth, Action onComplete)
+    {
+        Sequence brushSeq = DOTween.Sequence();
+        brushSeq.Append(_rectTransform.DOMoveX(startPos.x - brushWidth, _handShakeSpeed).SetEase(Ease.InOutSine))                                            // Движения влево-вправо 3 раза
+                .Append(_rectTransform.DOMoveX(startPos.x + brushWidth, _handShakeSpeed).SetEase(Ease.InOutSine))
+                .Append(_rectTransform.DOMoveX(startPos.x - brushWidth, _handShakeSpeed).SetEase(Ease.InOutSine))
+                .Append(_rectTransform.DOMoveX(startPos.x + brushWidth, _handShakeSpeed).SetEase(Ease.InOutSine))
+                .Append(_rectTransform.DOMoveX(startPos.x, _handMoveSpeed).SetEase(Ease.OutBack));
+
+        brushSeq.OnComplete(() =>
+        {
+            onComplete?.Invoke();
+        });                                                                                                  // При необходимости задаем цвет кисти
+        brushSeq.Play();
+    }
+
+    #endregion
+    #region >>> DRAG EVENTS
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (_currentState != HandState.HoldingTool) return;
@@ -137,8 +177,7 @@ public class Hand : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
         var results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, results);
-
-        // Ищем среди них Face, игнорируя руку
+               
         foreach (var hit in results)
         {
             Face face = hit.gameObject.GetComponent<Face>();
@@ -153,22 +192,38 @@ public class Hand : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         // не попали → ничего не делаем
         _currentState = HandState.HoldingTool;
     }
+    #endregion  
 
-    private void ReturnTool()
+    private Vector2 GetPreparePosition(DraggableItem item)
     {
-        Sequence seq = DOTween.Sequence();       
-        seq.AppendCallback(() =>
+        Vector2 preparePosition = new Vector2();
+        if (item.Type == MakeupType.Cream)
         {
-            _currentItem.Reset();
-        });
 
-        seq.Append(_rectTransform.DOMove(_startPos, 1f));
-
-        seq.OnComplete(() =>
+        }
+        else
         {
-            _currentState = HandState.Idle;
-            _currentItem = null;
-        });
+            preparePosition = _root.GetChestPosition();
+        }
+        return preparePosition;
+    }
+
+    private Vector2 GetMakeupPosition(Face face, DraggableItem item)
+    {
+        Vector2 makeupPosition = new Vector2();
+        if (item.Type == MakeupType.Blush)
+            makeupPosition = face.Nose.position;
+        else if (item.Type == MakeupType.EyeShadow)
+            makeupPosition = face.Eyes.position;
+        else if (item.Type == MakeupType.Lipstick)
+            makeupPosition = face.Lips.position;
+        else if (item.Type == MakeupType.Cream)
+            makeupPosition = face.Nose.position;
+        else
+            makeupPosition = face.Nose.position;
+
+        makeupPosition = new Vector2(makeupPosition.x, makeupPosition.y - _currentItem.UseYOffset);
+        return makeupPosition;
     }
 }
 

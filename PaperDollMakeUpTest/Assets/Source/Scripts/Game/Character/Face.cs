@@ -1,11 +1,13 @@
 using UnityEngine;
 
 public class Face : MonoBehaviour
-{    
-    public void TryApply(Hand hand)
-    {
-        Debug.Log("Apply to Face");
+{
+    public RectTransform Eyes;
+    public RectTransform Nose;
+    public RectTransform Lips;
 
+    public void TryApply(Hand hand)
+    {        
         hand.ApplyEffect(this, () =>
         {
 

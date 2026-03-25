@@ -19,4 +19,5 @@ public enum MakeupType
     EyeShadow,
     Lipstick,
     Powder,
+    Cream,
 }

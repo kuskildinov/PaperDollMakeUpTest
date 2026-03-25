@@ -13,4 +13,9 @@ public class CharacterRoot : CompositeRoot
     {
         _character.SetMakeupData(data);
     }
+
+    public Vector2 GetChestPosition()
+    {
+        return _character.ChestPosition;
+    }
 }

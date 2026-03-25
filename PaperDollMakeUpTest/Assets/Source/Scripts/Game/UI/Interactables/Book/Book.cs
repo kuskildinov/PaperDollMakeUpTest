@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Book : MonoBehaviour
@@ -83,11 +84,41 @@ public class Book : MonoBehaviour
     #endregion
     #region >>> DRAGGABLE ITEMS
 
-    public DraggableItem GetDraggableItemByType(MakeupType type)
+    public DraggableItem GetDraggableItemByType(SelectMakeUpButton button)
     {
+        List<DraggableItem> currentSelectedItems = new List<DraggableItem>();
+        DraggableItem selectedItem = null;
+        MakeupType currentType = button.Data.Type;
+        int index = button.Data.Index;
+
         foreach (DraggableItem item in _draggableItems)
         {
-            if (item.Type == type)
+            if (item.Type == currentType)
+                currentSelectedItems.Add(item);
+        }
+
+        if(currentSelectedItems.Count <= 0)
+        {
+            Debug.LogError("Cant Find Item");
+            return null;
+        }       
+
+        if(currentType == MakeupType.Lipstick)
+        {
+            selectedItem = GetDraggableItemByIndex(currentSelectedItems, index);
+        }
+        else
+        {
+            selectedItem = currentSelectedItems[0];
+        }
+        return selectedItem;
+    }
+
+    private DraggableItem GetDraggableItemByIndex(List<DraggableItem> currentSelectedItems, int index)
+    {
+        foreach (DraggableItem item in currentSelectedItems)
+        {
+            if (item.Index == index)
                 return item;
         }
 

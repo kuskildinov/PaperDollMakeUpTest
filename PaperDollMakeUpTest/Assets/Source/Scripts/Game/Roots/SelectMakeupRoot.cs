@@ -21,9 +21,9 @@ public class SelectMakeupRoot : CompositeRoot
         _handRoot.OnMakeUpSelected(button);
     }
 
-    public DraggableItem GetDraggableItemByType(MakeupType type)
+    public DraggableItem GetDraggableItemByType(SelectMakeUpButton button)
     {
-        return _book.GetDraggableItemByType(type);
+        return _book.GetDraggableItemByType(button);
     }
 
     public void ResetMakeUpData()
