@@ -9,6 +9,8 @@ public class SelectMakeupRoot : CompositeRoot
 
     private MakeupData _currentSelectedData;
 
+    public MakeupData CurrentSelectedData => _currentSelectedData;
+
     public override void Compose()
     {
         _book.Initialize(this);

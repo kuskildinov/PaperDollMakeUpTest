@@ -31,7 +31,7 @@ public class SelectMakeUpButton : MonoBehaviour
         _button.onClick.RemoveAllListeners();
     }
 
-    private void OnButtonClicked()
+    protected virtual void OnButtonClicked()
     {
         _book.OnSelectMakeupButtonClicked(this);
     }

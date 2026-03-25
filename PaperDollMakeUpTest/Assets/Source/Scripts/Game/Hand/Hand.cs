@@ -20,7 +20,6 @@ public class Hand : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     private RectTransform _rectTransform;
     private Canvas _canvas;
     private Vector2 _startPos;
-    private Transform _startParent;
     private HandState _currentState = HandState.Idle;
     private DraggableItem _currentItem;
 
@@ -84,6 +83,7 @@ public class Hand : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
             PlaySetMakeupAnimationByType(() =>
             {
                 seq.Play();
+                onComplete?.Invoke();
             });
         });
 
@@ -92,7 +92,7 @@ public class Hand : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         seq.OnComplete(() =>                                                                                                             // Сбрасываем и скрываем руку
         {
             ReturnTool();
-            onComplete?.Invoke();
+           
         });
     }
 
